@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Switch for Coders privacy policy</title>
+<style>
+:root { color-scheme: light dark; }
+body { font: 16px/1.55 system-ui, sans-serif; margin: 8vh auto 12vh; max-width: 36rem; padding: 0 1.25rem; }
+h1 { font-size: 1.35rem; margin: 0 0 1rem; }
+h2 { font-size: 1rem; margin: 2rem 0 0.5rem; }
+p { margin: 0 0 0.75rem; }
+.muted { opacity: 0.65; }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid rgba(128,128,128,0.3); font-size: 0.9rem; }
+.foot nav a { color: inherit; }
+/* Glitch Art's signature: black, in a white container, on any page. */
+.foot .ga-credits { background: #fff; padding: 6px 10px; border-radius: 10px; }
+</style>
+<link rel="stylesheet" href="css/credits.css">
+</head>
+<body>
+<h1>Switch for Coders privacy policy</h1>
+<p class="muted">2 November 2026</p>
+
+<p><strong>Switch for Coders collects nothing.</strong> There is no account to create, no analytics, no telemetry, no crash reporting, and no server belonging to us. The developer receives no information about you or your use of the app, ever.</p>
+
+<h2>Who is responsible</h2>
+<p><a href="https://www.glitchr.io">GLITCH ART</a>, SARL, 5 rue Vincent Scotto, 67400 Illkirch-Graffenstaden, France, registered in Strasbourg under number 901 821 074 (RCS Strasbourg), publishes Switch for Coders. Questions and requests: <a href="mailto:support@glitchr.io">support@glitchr.io</a>.</p>
+
+<h2>What the app stores, and where</h2>
+<p>Everything stays on your Mac, unless you turn on iCloud publishing (below).</p>
+<ul>
+<li><strong>Your preferences and a cache</strong> — which accounts you have, the names you gave them, their order, the SSH hosts you added — live in the app's own container (<code>~/Library/Containers/studio.glitchr.sfc</code>).</li>
+<li><strong>Your Claude Code sign-ins are not ours.</strong> You sign in yourself, in Anthropic's own sign-in, run by Anthropic's official <code>claude</code> command-line tool; the app never sees your password. Each account is signed in in a folder of its own (<code>~/.claude-&lt;name&gt;</code>), and the sign-in stays where that tool keeps it, in that folder and the macOS Keychain. The app never reads, copies or moves it. Switching writes one line, the chosen folder's path, to <code>~/.config/switch-for-coders/active</code>; the launcher script you install starts Claude Code with that folder.</li>
+<li><strong>What the app reads of Claude Code's records.</strong> Claude Code keeps a record of your conversations in <code>~/.claude*/projects</code>. The app looks there for one kind of entry only: a refusal at a usage limit, which says which limit was hit and when it resets. It keeps the limit and the time, nothing else of the record, and none of it leaves your Mac. The launcher also keeps your conversations in one folder, <code>~/.claude/projects</code>, so that any of them goes on under whichever account you select, and when you switch it stops the Claude Code that VS Code runs under another account, at the end of its turn.</li>
+<li><strong>Codex, Grok and Antigravity sign-ins.</strong> You sign in yourself, in each tool's own sign-in. These tools read one sign-in at a time, so here a switch does move one: the app copies the account's <code>auth.json</code> into <code>~/.codex</code> or <code>~/.grok</code>, saving the one there first; for Antigravity, the script you install keeps each account's sign-in in a Keychain entry of its own and puts the chosen one back. All of it stays on your Mac, or on the server it was made on. The app reads from these files only who is signed in, and for Codex the usage figures it records with its sessions.</li>
+<li><strong>A diagnostic log</strong> — what happened at each switch and sign-in check — in the app's container (<code>credential-trace.jsonl</code>). It holds dates and outcomes, never a token. It is included in the diagnostics archive only if you choose to attach one to a message to us.</li>
+<li><strong>The accounts last seen on each server you added</strong>, so they stay on screen when a server can't be reached. Names, plans and usage figures; no sign-ins.</li>
+<li><strong>The macOS Keychain</strong> holds two things, and only if you enter them yourself: an Anthropic API key (for the optional usage panel) and an SSH password (if a host of yours needs one).</li>
+</ul>
+<h2>What leaves your Mac</h2>
+<ul>
+<li><strong>Nothing, unless you ask for it.</strong> With no API key stored and no SSH host added, the app makes no network connections at all.</li>
+<li><strong>api.anthropic.com</strong> — only if you paste your own Anthropic API key, and only to read your own API usage figures with it. Your key goes nowhere else.</li>
+<li><strong>Servers you add yourself</strong> — the app connects over SSH, using macOS's own <code>ssh</code>, only to hosts you have added by name, to list and switch the Claude Code, Codex and Grok accounts there (a Claude Code switch writes the same one-line file there, beside a copy of the launcher; a Codex or Grok switch copies the sign-in on that server, as on your Mac) and to read the usage figures those tools recorded there. It does so every five minutes while it runs, and whenever you ask. Those figures come back to your Mac and go no further. A sign-in never leaves the machine it was made on.</li>
+<li><strong>Your own iCloud, if you turn it on.</strong> With "Show Usage on Your Other Devices" in Settings, each account's name, email, plan and usage figures, on your Mac and on your servers, go to your own iCloud key-value storage, for the Switch for Coders apps on your iPhone, iPad and Apple Watch. No sign-in is ever published, nothing passes through a server of ours, and turning it off removes them. It is off until you turn it on.</li>
+<li><strong>Anthropic, through Claude Code itself.</strong> When you ask the app to check a sign-in, or just after you have signed in, Claude Code makes one small request with that account — on your Mac through the script you install (the app shows you Claude Code's answer), or over SSH on a server. The request is Claude Code's, made with its own sign-in; the app sees only whether it was accepted.</li>
+</ul>
+<h2>Your data, your control</h2>
+<p>Remove an account in the app and its folder is deleted from your Mac. Claude Code's own Keychain entry for that folder is Claude Code's to remove: run <code>claude auth logout</code> for the account first. Delete the app and its container goes with it; to remove the two Keychain items, search for "SwitchForCoders" in Keychain Access.</p>
+<h2 id="rights">Your rights</h2>
+<p>Under the General Data Protection Regulation you may ask what is held about you, have it corrected or erased, have its use restricted, object to it, and receive it in a portable form. GLITCH ART holds nothing about you from this app: what it stores stays on your devices and in your own iCloud. Write to <a href="mailto:support@glitchr.io">support@glitchr.io</a> for anything else. You may also complain to the CNIL, the French data protection authority.</p>
+
+<h2>Children</h2>
+<p>The app is not directed at children and collects no personal information from anyone.</p>
+<h2>Changes</h2>
+<p>Any change to this policy will be published on this page with a new date above.</p>
+<p>Questions: <strong>marco.meyer@glitchr.io</strong></p>
+<footer class="foot">
+  <nav><a href="privacy">Privacy</a> · <a href="privacy#rights">GDPR</a> · <a href="support">Support</a></nav>
+  <div class="ga-credits">
+    <a class="ga-credits-sign" href="https://www.glitchr.io" target="_blank" rel="noopener" aria-label="2026 Glitch Art">
+      <span class="ga-credits-year" aria-hidden="true"><span>20</span><span>26</span></span>
+<svg class="ga-credits-monkey" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+        <g class="hair init" stroke="none">
+            <path d="M0,216.56V173.25H14.49V158.78H29v-14.3H72.22v14.41H86.69v14.39h14.2v14.47H86.58v14.47H72.31v14.19h28.85V202h14.39V187.57h14.26V158.75H101V144.29H86.77V57.65h14.37V43.26h14.33V28.84H130V14.61H245.52V28.93h14.41V43.34c-8.72,0-17.44,0-26.15-.16-2.22,0-3.05.47-2.92,2.84.21,3.79.06,7.61.06,11.44H216.51v-14H187.62V57.93H158.88c0,8.9-.07,17.47.05,26,0,2.17-.56,2.88-2.76,2.78-3.8-.17-7.62,0-11.52,0v28.74H159v43.31h9.05c5.26,0,5.26,0,5.26,5.36v9.08c4.24,0,8.07.09,11.9,0,1.91-.07,2.72.42,2.58,2.49-.17,2.54,0,5.1,0,7.66v4.24h3.38l83.22.13v14.56h14.47v14.37h28.65v57.77H303.17c0-.9-.12-1.8-.12-2.69q0-19,.06-38.1c0-.79,0-1.59,0-2.34H274.35v43.14a5.08,5.08,0,0,0-.67-.07l-55.9.17a5.92,5.92,0,0,0-.94.17V303h54.84c.89,0,1.79.08,2.69.12v14.32H144.31c0-4.85,0-9.57,0-14.29.89-.05,1.79-.15,2.68-.15h54.89V274.58a2.42,2.42,0,0,0-.56-.17q-21.63,0-43.27,0c-4.57,0-9.15-.12-13.73-.18V245.42H129.8V231.16H101.36v43h43q0,14.54,0,29.07H129.82V288.65H86.57V274.2H57.68V259.83H28.78V245.37H14.4V216.56Zm245.26,43.15V230.86H230.94V216.77H187.76c0,3.6,0,7,0,10.34,0,4.51.56,3.91-4,3.95-3.42,0-6.85,0-10.31,0v28.65Zm-143.95-130h28.46V86.89H101.31Z" />
+            <path d="M115.53,28.91H86.8V14.53h14.26V0H115.5Z" />
+            <path d="M274.35,86.65h-14.5V43.27h14.5Z" />
+            <path d="M303.16,158.84V115.46h14.31v43.38Z" />
+            <path d="M274.28,274.28h29v14.37H288.82v14.57H274.29Q274.27,288.75,274.28,274.28Z" />
+            <path d="M288.79,101.09H274.28V86.59h14.51Z" />
+            <path d="M303.23,115.53H288.72V101h14.51Z" />
+            <path d="M288.72,173.28v-14.5h14.51v14.5Z" />
+            <path d="M274.28,187.72V173.21h14.51v14.51Z" />
+            <path d="M187.68,144.38c.89,0,1.79-.08,2.69-.08q40.63,0,81.28,0c.9,0,1.79.06,2.69.09l0,0v14.39H187.72V144.34Z" />
+            <path d="M187.76,72.2H202V101H187.76Z" />
+            <path d="M231.08,72.21h14.24V101H231.08Z" />
+            <path d="M216.64,115.51h28.68v14.37H216.64Z" />
+            <path d="M187.72,144.34H173.25V130h14.43v14.35Z" />
+            <path d="M274.34,144.39V130h14.37v14.3H274.3Z" />
+            <path d="M216.49,245.46H202.14V231.11h14.35Z" />
+        </g>
+
+        <g class="hair frame1" stroke="none">
+            <path d="M303,115.52l14.46,0v86.62H303l0,0c0-4.86-.1-9.72-.12-14.59,0-4.69,0-9.38,0-14.28H288.55V158.69H303c0-1.83,0-3.4,0-5q0-19.12.1-38.26Z" />
+            <path d="M115.33,0q0,14.46,0,28.91H86.63V14.53H100.9V0Z" />
+            <path d="M115.3,28.84h14.42V14.56H245.2v14.2h14.5V43.33l.05,0c-8.71,0-17.43,0-26.14-.1-2.24,0-3,.5-2.9,2.85.2,3.79,0,7.61,0,11.43H216.34v-14H187.46V57.93H158.72c0,8.9-.07,17.47.05,26,0,2.17-.56,2.88-2.76,2.78-3.8-.17-7.62,0-11.52,0v28.74h14.35v43.08a7.31,7.31,0,0,0,.92.2l8.57,0c4.83,0,4.83,0,4.83,4.9v9.54c2.8,0,5.2,0,7.6,0,2.16,0,5.24-.65,6.24.48,1.15,1.3.53,4.23.59,6.45.06,2.44,0,4.88,0,7.51h86.59V202c2.75,0,5.14,0,7.52,0l21.36.17,0,0v14.41H288.72v43.24h14.16v29H288.66v14.53H274.18q0-7.32-.05-14.63,0-7,0-14.09H216.7V303h54.86c.89,0,1.79.08,2.69.13v14.3H144.15V303.2c.9-.05,1.79-.15,2.69-.15h54.92V274.51H144.3c0,1.17,0,2.13,0,3.09q0,12.84-.08,25.67H115.37V288.81H86.54V274.34H57.62v-14.4H28.79V245.55H14.32v-28.9H0V173.3H14.19V158.91H28.66V144.49H71.93v14.29H86.4v14.31h43.24V158.86H101V144.47H86.64V57.82h14.17V43.42H115.3Zm28.91,158.94H101.1v43.06h28.64V216.39h14.4V187.7h14.25V173.48H144.21ZM173.3,259.7h71.84V230.94H230.78v-14.2H187.6c0,4-.13,7.82.05,11.63.1,2.21-.63,2.84-2.79,2.75-3.8-.17-7.62-.05-11.56-.05Zm-72.17-130h28.49V86.88H101.13ZM86.3,216.46V202.3H72.13v14.16Z" />
+            <path d="M259.7,43.33h14.44V86.64l.05,0H259.65V82.22q0-19.47.1-38.94Z" />
+            <path d="M274.14,86.64h14.44v14.44l.05,0H274.19V86.6Z" />
+            <path d="M288.58,101.08H303v14.44l.05,0H288.63V101Z" />
+            <path d="M274.15,144.35v14.39H187.56v-14.4l0,0c.89,0,1.79-.09,2.69-.09H271.5c.89,0,1.79.06,2.69.09Z" />
+            <path d="M201.89,101H187.64V72.25h14.25Z" />
+            <path d="M230.92,72.21h14.25V101H230.92Z" />
+            <path d="M216.42,129.87V115.61h28.81v14.26Z" />
+            <path d="M187.56,144.34H173.09V130h14.43v14.35Z" />
+            <path d="M274.19,144.39V130.05h14.37v14.3H274.15Z" />
+            <path d="M288.64,173.22v14.5H274.13v-14.5Z" />
+            <path d="M201.94,245.43V231.07H216.3v14.36Z" />
+        </g>
+
+        <g class="hair frame2" stroke="none" >
+            <path d="M0,216.56V173.25H14.48V158.79H28.94V144.55H72.26v14.11H86.7v-101h14.44V43.25h14.32V28.84H130V14.61H245.51V28.93h14.4V43.34c-7.36,0-14.72-.1-22.07-.09-2.23,0-5.15-.58-6.46.57-1.12,1-.42,4.07-.46,6.23,0,2.46,0,4.91,0,7.42H216.63c0-4.16-.07-8.14,0-12.11,0-1.7-.53-2.18-2.19-2.16-8.34.12-16.68.13-25,.2a14.31,14.31,0,0,0-1.81.25V57.87H158.88v3c0,7.44,0,14.88,0,22.32,0,3.88.38,3.48-3.5,3.5-3.57,0-7.15,0-10.77,0v28.73h14.22v14.7H144.44c0,5,0,9.61,0,14.26H101.29V187.5H130V173.08h14.39V144.3H159v14.44c4.2,0,8.1.06,12,0,1.7,0,2.51.4,2.34,2.25-.14,1.57,0,3.16,0,4.74v7.47c4.18,0,7.94.12,11.69,0,2.14-.1,2.9.51,2.8,2.74-.18,3.8-.05,7.61-.05,11.58h86.57V173.22h14.47V187.8h28.69v57.69H303.19c-.06-.89-.16-1.79-.16-2.68q0-19,.07-38.08v-2.32H274.51v42.87h2.85l25.9.15v43.43H288.64v14.38H274.32c0-4.87-.05-9.75-.06-14.62,0-4.7,0-9.41,0-14.1H216.84V303h54.85c.9,0,1.8.09,2.69.13v14.31H144.31V303.19c.89-.05,1.79-.15,2.68-.15h54.92V274.5H144.46v3.09l-.09,25.67h-29v-14.6H86.57V274.2H57.67V259.83H28.78V245.37H14.4V216.56Zm188.07.11a4.41,4.41,0,0,0-.27.91c0,2.55-.05,5.11-.05,7.66,0,5.82,0,5.82-5.71,5.82h-8.51v28.62h71.74V230.9H231V216.67Zm-58.32-87V86.82H101.4v42.87ZM86.58,230.84h28.74V216.48H101V202.27H72.36v14.36H86.58Z" />
+            <path d="M115.53,28.91H86.8V14.53h14.26V0h14.43Q115.52,14.46,115.53,28.91Z" />
+            <path d="M274.34,86.65H259.83V43.27h14.51Z" />
+            <path d="M303.14,158.84V115.46h14.32v43.38Z" />
+            <path d="M288.77,101.09h-14.5V86.59h14.5Z" />
+            <path d="M303.21,115.53h-14.5V101h14.5Z" />
+            <path d="M288.71,173.28v-14.5h14.5v14.5Z" />
+            <path d="M187.67,144.38c.9,0,1.79-.08,2.69-.08q40.63,0,81.27,0c.9,0,1.8.06,2.7.09l-.05,0v14.39H187.7V144.34Z" />
+            <path d="M187.68,101V72.29H202V101Z" />
+            <path d="M245.35,101H231.11V72.25h14.24Z" />
+            <path d="M216.57,129.86V115.61h28.8v14.25Z" />
+            <path d="M187.7,144.34H173.24V130h14.43v14.35Z" />
+            <path d="M274.33,144.39V130h14.36v14.3H274.28Z" />
+            <path d="M202.11,231H216.5V245.4H202.11Z" />
+        </g>
+    </svg>
+    </a>
+  </div>
+</footer>
+</body>
+</html>
